@@ -1,5 +1,5 @@
 from fastapi import FastAPI, WebSocket
-import json
+
 app = FastAPI()
 
 
