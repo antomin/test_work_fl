@@ -8,15 +8,15 @@ let ws = new WebSocket("ws://localhost:8000/ws");
 
 inputBtnElem.onclick = (event) => {
     event.preventDefault();
-    let data = JSON.stringify({
-        "action": "echo_send",
-        "message": inputTextElem.value
-    });
-
-    ws.send(data);
-
-    inputTextElem.value = "";
-}
+    if (inputTextElem.value) {
+        let data = {
+            "action": "echo_send",
+            "message": inputTextElem.value
+        };
+        ws.send(JSON.stringify(data));
+        inputTextElem.value = "";
+    }
+};
 
 ws.onmessage = (event) => {
     let data = JSON.parse(event.data);
